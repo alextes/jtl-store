@@ -1,0 +1,21 @@
+# node modules
+node_modules/
+
+# jetbrains ide
+.idea/
+
+# OSX
+.DS_Store
+
+# ignore build directory
+build/
+
+# npm debug log
+npm-debug.log*
+
+# environment variables
+.env
+
+# yarn error log
+yarn-error.log
+
