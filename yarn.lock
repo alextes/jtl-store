@@ -1675,7 +1675,7 @@ eslint-module-utils@^1.0.0:
     debug "2.2.0"
     pkg-dir "^1.0.0"
 
-eslint-plugin-ava@^3.1.1:
+eslint-plugin-ava:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-ava/-/eslint-plugin-ava-3.1.1.tgz#fdcf1ad9605867639ae0007d58100ee40a6de25d"
   dependencies:
