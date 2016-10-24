@@ -2,9 +2,7 @@
 import winston from 'winston';
 
 winston.cli();
-const LOG_LEVEL: string = process.env.LOG_LEVEL || 'debug';
-winston.level = LOG_LEVEL;
+winston.level = (process.env.LOG_LEVEL || 'debug': string);
 
-const msg: string = 'Hello World!';
-winston.debug(msg);
+winston.debug('Hello World!');
 process.exit(0);
