@@ -12,5 +12,18 @@
     "email": "alex.tesfamichael@gmail.com"
   },
   "license": "MIT",
-  "private": true
+  "private": true,
+  "ava": {
+    "files": [
+      "test/*.js",
+      "test/**/*.js"
+    ],
+    "source": [
+      "src/*.js",
+      "src/**/*.js"
+    ]
+  },
+  "dependencies": {
+    "ava": "^0.16.0"
+  }
 }
