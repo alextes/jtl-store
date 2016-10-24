@@ -2,6 +2,11 @@
   "name": "jtl-jobs",
   "version": "1.0.0",
   "description": "jobs service for junior tech list",
+  "scripts": {
+    "lint": "eslint src/ test/ tools/",
+    "start": "babel-node tools/run start",
+    "test": "ava"
+  },
   "main": "src/index.js",
   "repository": {
     "url": "git@gitlab.com:AlexTes/jtl-jobs.git",
@@ -23,7 +28,35 @@
       "src/**/*.js"
     ]
   },
+  "babel": {
+    "presets": [
+      "latest"
+    ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb-base",
+    "plugins": [
+      "ava",
+      "promise",
+      "flowtype"
+    ]
+  },
   "dependencies": {
-    "ava": "^0.16.0"
+    "bluebird": "^3.4.6",
+    "lodash": "^4.16.4"
+  },
+  "devDependencies": {
+    "ava": "^0.16.0",
+    "babel-cli": "^6.16.0",
+    "babel-eslint": "^7.0.0",
+    "babel-preset-latest": "^6.16.0",
+    "eslint": "^3.8.1",
+    "eslint-config-airbnb-base": "^9.0.0",
+    "eslint-plugin-ava": "^3.1.1",
+    "eslint-plugin-flowtype": "^2.23.0",
+    "eslint-plugin-import": "^2.0.1",
+    "eslint-plugin-promise": "^3.3.0",
+    "nodemon": "^1.11.0"
   }
 }
