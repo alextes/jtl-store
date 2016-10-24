@@ -1,0 +1,16 @@
+{
+  "name": "jtl-jobs",
+  "version": "1.0.0",
+  "description": "jobs service for junior tech list",
+  "main": "src/index.js",
+  "repository": {
+    "url": "git@gitlab.com:AlexTes/jtl-jobs.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Alexander Tesfamichael",
+    "email": "alex.tesfamichael@gmail.com"
+  },
+  "license": "MIT",
+  "private": true
+}
