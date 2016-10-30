@@ -47,6 +47,12 @@
   },
   "dependencies": {
     "bluebird": "^3.4.6",
+    "envalid": "^2.4.0",
+    "koa": "2",
+    "koa-bodyparser": "^2.2.0",
+    "koa-compress": "2",
+    "koa-logger": "^1.3.0",
+    "koa-router": "7",
     "lodash": "^4.16.4",
     "winston": "^2.2.0"
   },
