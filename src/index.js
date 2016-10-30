@@ -1,8 +1,15 @@
 /* @flow */
+import envalid, { str } from 'envalid';
 import winston from 'winston';
 
-winston.cli();
-winston.level = (process.env.LOG_LEVEL || 'debug': string);
+import startListening from './server';
 
-winston.debug('Hello World!');
-process.exit(0);
+const env = envalid.cleanEnv(process.env, {
+  LOG_LEVEL: str({ default: 'info' }),
+});
+
+winston.cli();
+winston.level = env.LOG_LEVEL;
+
+startListening();
+
