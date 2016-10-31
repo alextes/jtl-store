@@ -47,7 +47,10 @@
       "ava",
       "promise",
       "flowtype"
-    ]
+    ],
+    "rules": {
+      "import/no-extraneous-dependencies": "off"
+    }
   },
   "dependencies": {
     "bluebird": "^3.4.6",
