@@ -24,10 +24,8 @@ app.use(router.allowedMethods());
 
 export default async function (): void {
   const server = app.listen(env.PORT);
-  server
-    .on('listening', () => {
-      // winston.info('%s listening at %s', app.name, app.url);
-      const { address, port } = server.address();
-      winston.info(`jtl-jobs listening on [${address}]:${port}`);
-    });
+  server.on('listening', () => {
+    const { address, port } = server.address();
+    winston.info(`jtl-jobs listening on [${address}]:${port}`);
+  });
 }
