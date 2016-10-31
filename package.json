@@ -19,9 +19,13 @@
   "license": "MIT",
   "private": true,
   "ava": {
+    "babel": "inherit",
     "files": [
       "test/*.js",
       "test/**/*.js"
+    ],
+    "require": [
+      "babel-register"
     ],
     "source": [
       "src/*.js",
