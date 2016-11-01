@@ -22,7 +22,7 @@ app.use(convert(bodyParser()));
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-export default async function (): void {
+export default function (): void {
   const server = app.listen(env.PORT);
   server.on('listening', () => {
     const { address, port } = server.address();

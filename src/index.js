@@ -2,7 +2,7 @@
 import envalid, { str } from 'envalid';
 import winston from 'winston';
 
-import startListening from './server';
+import startListening from './app/app';
 
 const env = envalid.cleanEnv(process.env, {
   LOG_LEVEL: str({ default: 'info' }),
