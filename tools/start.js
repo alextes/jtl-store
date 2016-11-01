@@ -11,8 +11,11 @@ async function start() {
     exec: 'babel-node',
     verbose: true,
   })
-  .on('error', (error) => { console.error(error); })
-  .on('exit', () => { process.exit(0); });
+  process.once('SIGINT', function() {
+    nodemon.once('exit', function() {
+      process.exit();
+    });
+  });
 }
 
 export default start;
