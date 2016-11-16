@@ -1,9 +1,14 @@
 function up(knex) {
   return knex.schema.createTable('jobs', (table) => {
     table.increments();
-    table.timestamps();
+    table.timestamp('created_at')
+      .defaultTo(knex.fn.now())
+      .notNullable();
+    table.timestamp('updated_at')
+      .defaultTo(knex.fn.now())
+      .notNullable();
     table.string('source').notNullable();
-    table.text('job-description').notNullable();
+    table.text('job_description').notNullable();
   });
 }
 
