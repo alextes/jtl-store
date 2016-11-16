@@ -22,10 +22,12 @@
     "babel": "inherit",
     "files": [
       "test/*.js",
-      "test/**/*.js"
+      "test/**/*.js",
+      "!test/setup.js"
     ],
     "require": [
-      "babel-register"
+      "babel-register",
+      "./test/setup.js"
     ],
     "source": [
       "src/*.js",
