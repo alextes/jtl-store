@@ -1,7 +1,0 @@
-{
-  "plugins": [
-    "esformatter-limit-linebreaks",
-    "esformatter-align",
-    "esformatter-add-trailing-commas"
-  ]
-}

@@ -40,6 +40,17 @@
       "latest"
     ]
   },
+  "esformatter": {
+    "root": true,
+    "plugins": [
+      "esformatter-limit-linebreaks",
+      "esformatter-add-trailing-commas"
+    ],
+    "align": {
+      "AssignmentExpression": 0,
+      "VariableDeclarations": 0
+    }
+  },
   "eslintConfig": {
     "parser": "babel-eslint",
     "extends": "airbnb-base",
