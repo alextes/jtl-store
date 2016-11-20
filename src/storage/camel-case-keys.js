@@ -1,6 +1,6 @@
-// @flow
+/* @flow */
 import { camelCase, mapKeys } from 'lodash';
 
-export default function (job): Object {
-  return mapKeys(job, (value, key) => camelCase(key));
+export default function (obj: Object): Object {
+  return mapKeys(obj, (value, key) => camelCase(key));
 }
