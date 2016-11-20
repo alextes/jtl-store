@@ -24,5 +24,7 @@ export function store(source: string, jobDescription: string): Promise<number> {
       source,
       job_description: jobDescription,
     })
-    .returning('id');
+    .returning('id')
+    // Select the first safely because we only store one at a time
+    .then(ids => ids[0]);
 }

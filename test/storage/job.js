@@ -22,7 +22,7 @@ function getBaseJob(job) {
  * 3. set the created_at and updated_at
  */
 test('should store a job correctly', async (t) => {
-  const [id] = await store(mockJob.source, mockJob.jobDescription);
+  const id: number = await store(mockJob.source, mockJob.jobDescription);
   const [retrievedJob] = await knex('jobs').select().where('id', id);
 
   // manually do the translation storage does
