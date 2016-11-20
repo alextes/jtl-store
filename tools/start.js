@@ -5,14 +5,14 @@ import nodemon from 'nodemon';
  */
 async function start() {
   nodemon({
-    script: 'src/index.js',
-    ext: 'js json',
-    ignore: ['test/', 'tools/'],
-    exec: 'babel-node',
+    script:  'src/index.js',
+    ext:     'js json',
+    ignore:  ['test/', 'tools/'],
+    exec:    'babel-node',
     verbose: true,
-  })
-  process.once('SIGINT', function() {
-    nodemon.once('exit', function() {
+  });
+  process.once('SIGINT', () => {
+    nodemon.once('exit', () => {
       process.exit();
     });
   });
