@@ -1,4 +1,4 @@
-import { default as envalid, str } from 'envalid';
+import envalid, { str } from 'envalid';
 import knexBuilder from 'knex';
 import configs from '../../knexfile';
 
