@@ -23,6 +23,7 @@
     "files": [
       "test/*.js",
       "test/**/*.js",
+      "!test/mock/*.js",
       "!test/setup.js"
     ],
     "require": [
