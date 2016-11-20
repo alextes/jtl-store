@@ -46,8 +46,10 @@
   "esformatter": {
     "root": true,
     "plugins": [
-      "esformatter-limit-linebreaks",
-      "esformatter-add-trailing-commas"
+      "esformatter-add-trailing-commas",
+      "esformatter-align",
+      "esformatter-flow",
+      "esformatter-limit-linebreaks"
     ],
     "align": {
       "AssignmentExpression": 0,
@@ -75,6 +77,7 @@
   "dependencies": {
     "bluebird": "^3.4.6",
     "envalid": "^2.4.0",
+    "esformatter": "^0.10.0",
     "knex": "^0.12.6",
     "koa": "2",
     "koa-bodyparser": "^2.2.0",
@@ -94,7 +97,8 @@
     "esformatter": "^0.10.0",
     "esformatter-add-trailing-commas": "^1.1.0",
     "esformatter-align": "^0.2.3",
-    "esformatter-limit-linebreaks": "^0.0.3",
+    "esformatter-flow": "^1.0.1",
+    "esformatter-limit-linebreaks": "0.0.3",
     "eslint": "^3.8.1",
     "eslint-config-airbnb-base": "^9.0.0",
     "eslint-plugin-ava": "^3.1.1",
