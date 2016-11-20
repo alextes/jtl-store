@@ -11,7 +11,7 @@ import knex from '../../src/storage/knex';
  * @param job - a job object retrieved by storage
  * @returns {Job}
  */
-function getBaseJob(job) {
+function getBaseJob(job: Object): Object {
   return omit(job, 'id', 'createdAt', 'updatedAt');
 }
 
