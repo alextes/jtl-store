@@ -12,10 +12,9 @@ type Job = {
 
 export function retrieve(id: number): Promise<Job> {
   return knex('jobs')
-    .select()
-    .where('id', id)
     // Select the first safely because id has the unique constraint.
-    .then(jobs => camelCaseKeys(jobs[0]));
+    .first()
+    .where('id', id);
 }
 
 export function store(source: string, jobDescription: string): Promise<number> {
@@ -26,5 +25,5 @@ export function store(source: string, jobDescription: string): Promise<number> {
     })
     .returning('id')
     // Select the first safely because we only store one at a time
-    .then(ids => ids[0]);
+    .then(rows => rows[0]);
 }

@@ -42,8 +42,8 @@ test('should retrieve a stored job', async (t) => {
     })
     .returning('id');
   const retrievedJob = await retrieve(id);
-
-  const job = getBaseJob(retrievedJob);
+  const camelCasedJob = camelCaseKeys(retrievedJob);
+  const job = getBaseJob(camelCasedJob);
 
   t.deepEqual(mockJob, job);
 });
