@@ -25,7 +25,7 @@ test('should store a job correctly', async (t) => {
   const id: number = await store(mockJob.source, mockJob.jobDescription);
   const [retrievedJob] = await knex('jobs').select().where('id', id);
 
-  // manually do the translation storage does
+  // manually do the translation the storage module does
   const camelCasedJob = camelCaseKeys(retrievedJob);
   const job = getBaseJob(camelCasedJob);
 
@@ -41,9 +41,9 @@ test('should retrieve a stored job', async (t) => {
       job_description: mockJob.jobDescription,
     })
     .returning('id');
+
   const retrievedJob = await retrieve(id);
-  const camelCasedJob = camelCaseKeys(retrievedJob);
-  const job = getBaseJob(camelCasedJob);
+  const job = getBaseJob(retrievedJob);
 
   t.deepEqual(mockJob, job);
 });

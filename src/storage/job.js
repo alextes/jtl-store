@@ -14,7 +14,8 @@ export function retrieve(id: number): Promise<Job> {
   return knex('jobs')
     // Select the first safely because id has the unique constraint.
     .first()
-    .where('id', id);
+    .where('id', id)
+    .then(camelCaseKeys);
 }
 
 export function store(source: string, jobDescription: string): Promise<number> {
