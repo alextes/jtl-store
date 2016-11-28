@@ -77,7 +77,6 @@
   "dependencies": {
     "bluebird": "^3.4.6",
     "envalid": "^2.4.0",
-    "esformatter": "^0.10.0",
     "knex": "^0.12.6",
     "koa": "2",
     "koa-bodyparser": "^2.2.0",
