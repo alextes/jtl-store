@@ -61,8 +61,8 @@
     "extends": "airbnb-base",
     "plugins": [
       "ava",
-      "promise",
-      "flowtype"
+      "flowtype",
+      "promise"
     ],
     "rules": {
       "import/no-extraneous-dependencies": "off",
@@ -71,7 +71,12 @@
         {
           "align": "value"
         }
-      ]
+      ],
+      "promise/avoid-new": "warn",
+      "promise/catch-or-return": "error",
+      "promise/param-names": "error",
+      "promise/no-promise-in-callback": "warn",
+      "promise/no-callback-in-promise": "warn"
     }
   },
   "dependencies": {
