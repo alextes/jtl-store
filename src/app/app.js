@@ -3,7 +3,6 @@ import envalid, { num } from 'envalid';
 import App from 'koa';
 import bodyParser from 'koa-bodyparser';
 import compress from 'koa-compress';
-import convert from 'koa-convert';
 import logger from 'koa-logger';
 import winston from 'winston';
 
@@ -15,9 +14,9 @@ const env = envalid.cleanEnv(process.env, {
 
 const app = new App();
 
-app.use(convert(logger()));
+app.use(logger());
 app.use(compress());
-app.use(convert(bodyParser()));
+app.use(bodyParser());
 
 app.use(router.routes());
 app.use(router.allowedMethods());
