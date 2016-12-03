@@ -2622,7 +2622,7 @@ knex@^0.12.6:
     tildify "~1.0.0"
     v8flags "^2.0.2"
 
-koa-bodyparser@^2.2.0:
+koa-bodyparser@^2:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/koa-bodyparser/-/koa-bodyparser-2.3.0.tgz#236ed90a16f562e79cade2b958f67c848824e818"
   dependencies:
@@ -2655,9 +2655,9 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
 
-koa-logger@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/koa-logger/-/koa-logger-1.3.0.tgz#242b93a3478e7321733ce61fdda9f9ef4947c844"
+koa-logger@^2:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/koa-logger/-/koa-logger-2.0.0.tgz#003d29b4bf37dbc0020e509e37b7ff2574695f30"
   dependencies:
     bytes "1"
     chalk "^1.0.0"
