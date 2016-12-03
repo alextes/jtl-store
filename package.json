@@ -79,7 +79,7 @@
     "envalid": "^2.4.0",
     "knex": "^0.12.6",
     "koa": "^2",
-    "koa-bodyparser": "^2",
+    "koa-bodyparser": "^3",
     "koa-compress": "^2",
     "koa-logger": "^2",
     "koa-router": "^7",
