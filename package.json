@@ -1,7 +1,7 @@
 {
-  "name": "jtl-jobs",
+  "name": "store",
   "version": "1.0.0",
-  "description": "jobs service for junior tech list",
+  "description": "Keeps a large store of tech jobs. Interprets them for relevance and property discovery. Exposes tech related jobs for juniors.",
   "scripts": {
     "lint": "eslint src/ test/ tools/",
     "start": "babel-node tools/run start",

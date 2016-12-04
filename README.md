@@ -1,3 +1,2 @@
-# Junior-Tech-List Jobs
-The jobs service for the Junior Tech List app
-
+# Junior Tech List - Jobs
+Keeps a large store of tech jobs. Interprets them for relevance and property discovery. Exposes tech related jobs for juniors.
