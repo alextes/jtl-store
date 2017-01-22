@@ -1,6 +1,6 @@
 {
   "name": "store",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Keeps a large store of tech jobs. Interprets them for relevance and property discovery. Exposes tech related jobs for juniors.",
   "scripts": {
     "lint": "eslint src/ test/ tools/",
@@ -8,9 +8,9 @@
     "test": "ava"
   },
   "main": "src/index.js",
-  "repository": {
-    "url": "git@gitlab.com:AlexTes/jtl-jobs.git",
-    "type": "git"
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/alextes/jtl-store.git"
   },
   "author": {
     "name": "Alexander Tesfamichael",
