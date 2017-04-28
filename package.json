@@ -21,6 +21,7 @@
   "private": true,
   "dependencies": {
     "babel-preset-env": "^1.4.0",
+    "babel-preset-stage-3": "^6.24.1",
     "bluebird": "^3.5.0",
     "envalid": "^3.0.0",
     "knex": "^0.12.9",
@@ -31,12 +32,14 @@
     "koa-pino-logger": "^2.1.0",
     "koa-router": "^7.1.1",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "pg": "^6.1.5",
     "pino": "^4.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^19.0.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "esformatter": "^0.10.0",
     "esformatter-add-trailing-commas": "^1.1.0",
@@ -49,6 +52,7 @@
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jest": "^19.0.1",
     "eslint-plugin-promise": "^3.5.0",
+    "execa": "^0.6.3",
     "flow-bin": "^0.45.0",
     "jest": "^19.0.2",
     "nodemon": "^1.11.0"

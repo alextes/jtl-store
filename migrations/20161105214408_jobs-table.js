@@ -8,7 +8,7 @@ function up(knex) {
       .defaultTo(knex.fn.now())
       .notNullable();
     table.string('source').notNullable();
-    table.text('jobDescription').notNullable();
+    table.text('description').notNullable();
   });
 }
 

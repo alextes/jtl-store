@@ -8,7 +8,7 @@ const env = envalid.cleanEnv(process.env, {
     default: 'development',
   }),
   NODE_ENV: str({
-    choices: ['production', 'development'],
+    choices: ['production', 'development', 'test'],
     default: 'development',
   }),
 });
@@ -18,6 +18,8 @@ if (env.isProduction) {
   config = configs.production;
 } else if (env.NODE_ENV === 'staging') {
   config = configs.staging;
+} else if (env.NODE_ENV === 'test') {
+  config = configs.test;
 } else {
   config = configs.development;
 }

@@ -2,7 +2,7 @@ module.exports = {
   development: {
     client:     'postgresql',
     connection: {
-      database: 'jtl-jobs',
+      database: 'jtl',
       user:     'alexander',
     },
   },
@@ -10,8 +10,23 @@ module.exports = {
   staging: {
     client:     'postgresql',
     connection: {
-      database: 'jtl-jobs',
+      database: 'jtl',
       user:     'jtl',
+    },
+    pool: {
+      min: 2,
+      max: 10,
+    },
+    migrations: {
+      tableName: 'knex_migrations',
+    },
+  },
+
+  test: {
+    client:     'postgresql',
+    connection: {
+      database: 'jtl-test',
+      user:     'alexander',
     },
     pool: {
       min: 2,
@@ -25,7 +40,7 @@ module.exports = {
   production: {
     client:     'postgresql',
     connection: {
-      database: 'jtl-jobs',
+      database: 'jtl',
       user:     'jtl',
     },
     pool: {

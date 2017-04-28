@@ -3,15 +3,15 @@ import envalid, { num } from 'envalid';
 import App from 'koa';
 import bodyParser from 'koa-bodyparser';
 import compress from 'koa-compress';
-import logger from 'koa-logger';
-import winston from 'winston';
+import logger from 'koa-pino-logger';
+import pino from 'pino';
 
 import router from './router';
 
 const env = envalid.cleanEnv(process.env, {
   PORT: num({ default: 8080 }),
 });
-
+const log = pino();
 const app = new App();
 
 app.use(logger());
@@ -25,6 +25,6 @@ export default function (): void {
   const server = app.listen(env.PORT);
   server.on('listening', () => {
     const { address, port } = server.address();
-    winston.info(`jtl-jobs listening on [${address}]:${port}`);
+    log.info(`jtl-jobs listening on [${address}]:${port}`);
   });
 }

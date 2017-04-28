@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import Router from 'koa-router';
 
 import * as routes from './routes';
