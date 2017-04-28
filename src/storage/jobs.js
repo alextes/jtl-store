@@ -1,5 +1,5 @@
 /* @flow */
-import { omit } from 'lodash';
+import { pick } from 'lodash';
 import moment from 'moment';
 import knex from './knex';
 
@@ -28,7 +28,7 @@ export type Job = {
 
 export function translateFromISO(rawJob: RawJob): Job {
   return {
-    ...rawJob,
+    ...pick(rawJob, 'description', 'id', 'source'),
     createdAt: moment.utc(rawJob.createdAt, moment.ISO_8601).format('X'),
     updatedAt: moment.utc(rawJob.updatedAt, moment.ISO_8601).format('X'),
   };

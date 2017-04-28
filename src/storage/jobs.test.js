@@ -1,8 +1,7 @@
 // @flow
 import { omit } from 'lodash';
-import moment from 'moment';
 import { getOne, store, translateToISO, translateFromISO } from './jobs';
-import type {Job, JobProps, RawJob} from './jobs';
+import type { Job, RawJob } from './jobs';
 import knex from './knex';
 
 const jobProps = {
@@ -23,10 +22,10 @@ test('should create a job', async () => {
 });
 
 test('should add defaults when needed', async () => {
-  const baseJob           = omit(jobProps, 'id', 'createdAt', 'updatedAt');
-  const id: number        = await store(baseJob);
+  const baseJob        = omit(jobProps, 'id', 'createdAt', 'updatedAt');
+  const id: number     = await store(baseJob);
   const rawJob: RawJob = await knex('jobs').select().first().where('id', id);
-  const job: Job = translateFromISO(rawJob);
+  const job: Job       = translateFromISO(rawJob);
 
   expect(job.id).toBe(id);
   expect(typeof job.createdAt).toBe('string');
@@ -41,5 +40,5 @@ test('should get one a stored job', async () => {
   const jobNoID = omit(job, 'id');
 
   expect(job.id).toBe(id);
-  expect(jobNoID).toMatchSnapshot()
+  expect(jobNoID).toMatchSnapshot();
 });

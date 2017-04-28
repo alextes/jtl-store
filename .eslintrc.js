@@ -5,9 +5,9 @@ module.exports = {
   parser: 'babel-eslint',
   extends: 'airbnb-base',
   plugins: [
-    'jest'
+    'jest',
     'flowtype',
-    'promise'
+    'promise',
   ],
   rules: {
     'import/no-extraneous-dependencies': 'off',
@@ -17,6 +17,7 @@ module.exports = {
         align: 'value'
       }
     ],
+    'no-multi-spaces': 'off',
     'promise/avoid-new': 'warn',
     'promise/catch-or-return': 'error',
     'promise/param-names': 'error',
