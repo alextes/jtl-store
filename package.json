@@ -5,12 +5,12 @@
   "scripts": {
     "lint": "eslint src/ test/ tools/",
     "start": "babel-node tools/run start",
-    "test": "ava"
+    "test": "jest"
   },
   "main": "src/index.js",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/alextes/jtl-store.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alextes/jtl-store.git"
   },
   "author": {
     "name": "Alexander Tesfamichael",
@@ -18,68 +18,8 @@
   },
   "license": "MIT",
   "private": true,
-  "ava": {
-    "babel": "inherit",
-    "files": [
-      "test/*.js",
-      "test/**/*.js",
-      "!test/mock/*.js",
-      "!test/setup.js"
-    ],
-    "require": [
-      "babel-register",
-      "./test/setup.js"
-    ],
-    "source": [
-      "src/*.js",
-      "src/**/*.js"
-    ]
-  },
-  "babel": {
-    "plugins": [
-      "transform-flow-strip-types"
-    ],
-    "presets": [
-      "latest"
-    ]
-  },
-  "esformatter": {
-    "root": true,
-    "plugins": [
-      "esformatter-add-trailing-commas",
-      "esformatter-align",
-      "esformatter-flow",
-      "esformatter-limit-linebreaks"
-    ],
-    "align": {
-      "AssignmentExpression": 0,
-      "VariableDeclarations": 0
-    }
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": "airbnb-base",
-    "plugins": [
-      "ava",
-      "flowtype",
-      "promise"
-    ],
-    "rules": {
-      "import/no-extraneous-dependencies": "off",
-      "key-spacing": [
-        "error",
-        {
-          "align": "value"
-        }
-      ],
-      "promise/avoid-new": "warn",
-      "promise/catch-or-return": "error",
-      "promise/param-names": "error",
-      "promise/no-promise-in-callback": "warn",
-      "promise/no-callback-in-promise": "warn"
-    }
-  },
   "dependencies": {
+    "babel-preset-env": "^1.4.0",
     "bluebird": "^3.5.0",
     "envalid": "^3.0.0",
     "knex": "^0.12.9",
@@ -87,17 +27,16 @@
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2",
     "koa-logger": "^2.0.1",
+    "koa-pino-logger": "^2.1.0",
     "koa-router": "^7.1.1",
     "lodash": "^4.17.4",
     "pg": "^6.1.5",
-    "winston": "^2.3.1"
+    "pino": "^4.4.0"
   },
   "devDependencies": {
-    "ava": "^0.19.1",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "babel-preset-latest": "^6.24.1",
     "esformatter": "^0.10.0",
     "esformatter-add-trailing-commas": "^1.1.0",
     "esformatter-align": "^0.2.3",
@@ -110,6 +49,7 @@
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-promise": "^3.5.0",
     "flow-bin": "^0.45.0",
+    "jest": "^19.0.2",
     "nodemon": "^1.11.0"
   }
 }

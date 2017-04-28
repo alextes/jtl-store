@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "plugins": [
+    "esformatter-add-trailing-commas",
+    "esformatter-align",
+    "esformatter-flow",
+    "esformatter-limit-linebreaks"
+  ],
+  "align": {
+    "AssignmentExpression": 0,
+    "VariableDeclarations": 0
+  }
+}
