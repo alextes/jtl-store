@@ -8,7 +8,7 @@ type Env = {
   DB_USER: string,
 };
 
-const {str}    = envalid;
+const { str }    = envalid;
 const env: Env = envalid.cleanEnv(process.env, {
   DB_HOST: str({ default: '127.0.0.1' }),
   DB_PASS: str({ default: '' }),
