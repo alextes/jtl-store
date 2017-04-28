@@ -1,5 +1,5 @@
-// flow-typed signature: eba1abf3f431d3d8e8583558e192e7a8
-// flow-typed version: 5ae7b07558/knex_v0.12.x/flow_>=v0.33.x
+// flow-typed signature: 70ebb4eae0bf689956f72b419a12be98
+// flow-typed version: 8f6da37963/knex_v0.12.x/flow_>=v0.33.x
 
 declare class Knex$Transaction mixins Knex$QueryBuilder, events$EventEmitter, Promise {
   commit(connection?: any, value?: any): Promise<any>;
@@ -55,21 +55,29 @@ declare class Knex$QueryBuilder mixins Promise {
   innerJoin(table: string, c1: string, operator: string, c2: string): this;
   innerJoin(table: string, c1: string, c2: string): this;
   innerJoin(builder: Knex$QueryBuilder, c1?: string, c2?: string): this;
+  innerJoin(table: string, builder: Knex$QueryBuilderFn): this;
   leftJoin(table: string, c1: string, operator: string, c2: string): this;
   leftJoin(table: string, c1: string, c2: string): this;
   leftJoin(builder: Knex$QueryBuilder): this;
+  leftJoin(table: string, builder: Knex$QueryBuilderFn): this;
   leftOuterJoin(table: string, c1: string, operator: string, c2: string): this;
   leftOuterJoin(table: string, c1: string, c2: string): this;
+  leftOuterJoin(table: string, builder: Knex$QueryBuilderFn): this;
   rightJoin(table: string, c1: string, operator: string, c2: string): this;
   rightJoin(table: string, c1: string, c2: string): this;
+  rightJoin(table: string, builder: Knex$QueryBuilderFn): this;
   rightOuterJoin(table: string, c1: string, operator: string, c2: string): this;
   rightOuterJoin(table: string, c1: string, c2: string): this;
+  rightOuterJoin(table: string, builder: Knex$QueryBuilderFn): this;
   outerJoin(table: string, c1: string, operator: string, c2: string): this;
   outerJoin(table: string, c1: string, c2: string): this;
+  outerJoin(table: string, builder: Knex$QueryBuilderFn): this;
   fullOuterJoin(table: string, c1: string, operator: string, c2: string): this;
   fullOuterJoin(table: string, c1: string, c2: string): this;
+  fullOuterJoin(table: string, builder: Knex$QueryBuilderFn): this;
   crossJoin(column: string, c1: string, c2: string): this;
   crossJoin(column: string, c1: string, operator: string, c2: string): this;
+  crossJoin(table: string, builder: Knex$QueryBuilderFn): this;
   joinRaw(sql: string, bindings?: mixed[]): this;
   distinct(): this;
   groupBy(column: string): this;
@@ -104,7 +112,7 @@ declare class Knex$QueryBuilder mixins Promise {
 declare class Knex$Knex mixins Knex$QueryBuilder, Promise {
   static (config: Knex$Config): Knex$Knex;
   static QueryBuilder: typeof Knex$QueryBuilder;
-  (tableName: string): Knex$QueryBuilder;
+  $call: (tableName: string) => Knex$QueryBuilder;
   raw(sqlString: string): any;
   client: any;
   destroy(): Promise<void>;
@@ -160,5 +168,6 @@ declare module 'knex' {
     line: string,
     routine: string,
   }
+  declare type $QueryBuilder = Knex$QueryBuilder;
   declare var exports: typeof Knex$Knex;
 }

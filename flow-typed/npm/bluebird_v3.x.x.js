@@ -1,5 +1,5 @@
-// flow-typed signature: e56cfe71a57d86061328d708719ee047
-// flow-typed version: 510f5eb199/bluebird_v3.x.x/flow_>=v0.32.x
+// flow-typed signature: a379340a5d360a5a86716b8e3ed03d31
+// flow-typed version: 3a109ae4bc/bluebird_v3.x.x/flow_>=v0.33.x
 
 type Bluebird$RangeError = Error;
 type Bluebird$CancellationErrors = Error;
@@ -24,10 +24,10 @@ type Bluebird$BluebirdConfig = {
 };
 
 declare class Bluebird$PromiseInspection<T> {
-  isCancelled(): bool;
-  isFulfilled(): bool;
-  isRejected(): bool;
-  pending(): bool;
+  isCancelled(): boolean;
+  isFulfilled(): boolean;
+  isRejected(): boolean;
+  pending(): boolean;
   reason(): any;
   value(): T;
 }
@@ -44,57 +44,80 @@ declare type Bluebird$PromisifyAllOptions = {
   promisifier?: (originalMethod: Function) => () => Bluebird$Promise<any> ;
 };
 
-declare class Bluebird$Promise<R> {
+declare type $Promisable<T> = Promise<T> | T;
+
+declare class Bluebird$Promise<+R> extends Promise<R>{
   static Defer: Class<Bluebird$Defer>;
   static PromiseInspection: Class<Bluebird$PromiseInspection<*>>;
 
-  static all<T, Elem: Bluebird$Promise<T> | T>(Promises: Array<Elem>): Bluebird$Promise<Array<T>>;
-  static props(input: Object|Map<*,*>|Bluebird$Promise<Object|Map<*,*>>): Bluebird$Promise<*>;
-  static any<T, Elem: Bluebird$Promise<T> | T>(Promises: Array<Elem>): Bluebird$Promise<T>;
-  static race<T, Elem: Bluebird$Promise<T> | T>(Promises: Array<Elem>): Bluebird$Promise<T>;
+  static all<T, Elem: $Promisable<T>>(Promises: $Promisable<Iterable<Elem>>): Bluebird$Promise<Array<T>>;
+  static props(input: $Promisable<Object | Map<*,*>>): Bluebird$Promise<*>;
+  static any<T, Elem: $Promisable<T>>(Promises: Array<Elem>): Bluebird$Promise<T>;
+  static race<T, Elem: $Promisable<T>>(Promises: Array<Elem>): Bluebird$Promise<T>;
   static reject<T>(error?: any): Bluebird$Promise<T>;
-  static resolve<T>(object?: Bluebird$Promise<T> | T): Bluebird$Promise<T>;
-  static some<T, Elem: Bluebird$Promise<T> | T>(Promises: Array<Elem>, count: number): Bluebird$Promise<Array<T>>;
-  static join<T, Elem: Bluebird$Promise<T> | T>(...Promises: Array<Elem>): Bluebird$Promise<Array<T>>;
-  static map<T, U, Elem: Bluebird$Promise<T> | T>(
+  static resolve<T>(object?: $Promisable<T>): Bluebird$Promise<T>;
+  static some<T, Elem: $Promisable<T>>(Promises: Array<Elem>, count: number): Bluebird$Promise<Array<T>>;
+  static join<T, A>(
+    value1: $Promisable<A>,
+    handler: (a: A) => $Promisable<T>
+  ): Bluebird$Promise<T>;
+  static join<T, A, B>(
+    value1: $Promisable<A>,
+    value2: $Promisable<B>,
+    handler: (a: A, b: B) => $Promisable<T>
+  ): Bluebird$Promise<T>;
+  static join<T, A, B, C>(
+    value1: $Promisable<A>,
+    value2: $Promisable<B>,
+    value3: $Promisable<C>,
+    handler: (a: A, b: B, c: C) => $Promisable<T>
+  ): Bluebird$Promise<T>;
+  static map<T, U, Elem: $Promisable<T>>(
     Promises: Array<Elem>,
-    mapper: (item: T, index: number, arrayLength: number) => U,
+    mapper: (item: T, index: number, arrayLength: number) => $Promisable<U>,
     options?: Bluebird$ConcurrencyOption
   ): Bluebird$Promise<Array<U>>;
-  static mapSeries<T, U, Elem: Bluebird$Promise<T> | T>(
+  static mapSeries<T, U, Elem: $Promisable<T>>(
     Promises: Array<Elem>,
-    mapper: (item: T, index: number, arrayLength: number) => U
+    mapper: (item: T, index: number, arrayLength: number) => $Promisable<U>
   ): Bluebird$Promise<Array<U>>;
-  static reduce<T, U, Elem: Bluebird$Promise<T> | T>(
+  static reduce<T, U, Elem: $Promisable<T>>(
     Promises: Array<Elem>,
-    reducer: (total: U, current: T, index: number, arrayLength: number) => U,
-    initialValue?: U
+    reducer: (total: U, current: T, index: number, arrayLength: number) => $Promisable<U>,
+    initialValue?: $Promisable<U>
   ): Bluebird$Promise<U>;
-  static filter<T, Elem: Bluebird$Promise<T> | T>(
+  static filter<T, Elem: $Promisable<T>>(
     Promises: Array<Elem>,
-    filterer: (item: T, index: number, arrayLength: number) => Bluebird$Promise<bool>|bool,
+    filterer: (item: T, index: number, arrayLength: number) => $Promisable<bool>,
     option?: Bluebird$ConcurrencyOption
   ): Bluebird$Promise<Array<T>>;
-  static each<T, Elem: Bluebird$Promise<T> | T>(
+  static each<T, Elem: $Promisable<T>>(
     Promises: Array<Elem>,
-    iterator: (item: T, index: number, arrayLength: number) => Bluebird$Promise<mixed>|mixed,
+    iterator: (item: T, index: number, arrayLength: number) => $Promisable<mixed>,
   ): Bluebird$Promise<Array<T>>;
-  static try<T>(fn: () => T|Bluebird$Promise<T>, args: ?Array<any>, ctx: ?any): Bluebird$Promise<T>;
-  static attempt<T>(fn: () => T|Bluebird$Promise<T>, args: ?Array<any>, ctx: ?any): Bluebird$Promise<T>;
-  static delay<T>(value: T|Bluebird$Promise<T>, ms: number): Bluebird$Promise<T>;
+  static try<T>(fn: () => $Promisable<T>, args: ?Array<any>, ctx: ?any): Bluebird$Promise<T>;
+  static attempt<T>(fn: () => $Promisable<T>, args: ?Array<any>, ctx: ?any): Bluebird$Promise<T>;
+  static delay<T>(ms: number, value: $Promisable<T>): Bluebird$Promise<T>;
   static delay(ms: number): Bluebird$Promise<void>;
   static config(config: Bluebird$BluebirdConfig): void;
 
   static defer(): Bluebird$Defer;
   static setScheduler(scheduler: (callback: (...args: Array<any>) => void) => void): void;
   static promisify(nodeFunction: Function, receiver?: Bluebird$PromisifyOptions): Function;
-  static promisifyAll(target: Object, options?: Bluebird$PromisifyAllOptions): void;
+  static promisifyAll(target: Object|Array<Object>, options?: Bluebird$PromisifyAllOptions): void;
 
   static coroutine(generatorFunction: Function): Function;
   static spawn<T>(generatorFunction: Function): Promise<T>;
 
-  static method<T>(fn: (...args: any) => T): Bluebird$Promise<T>;
-  static cast<T>(value: T|Bluebird$Promise<T>): Bluebird$Promise<T>;
+  // It doesn't seem possible to have type-generics for a variable number of arguments.
+  // Handle up to 3 arguments, then just give up and accept 'any'.
+  static method<T, R: $Promisable<T>>(fn: () => R): () => Bluebird$Promise<T>;
+  static method<T, R: $Promisable<T>, A>(fn: (a: A) => R): (a: A) => Bluebird$Promise<T>;
+  static method<T, R: $Promisable<T>, A, B>(fn: (a: A, b: B) => R): (a: A, b: B) => Bluebird$Promise<T>;
+  static method<T, R: $Promisable<T>, A, B, C>(fn: (a: A, b: B, c: C) => R): (a: A, b: B, c: C) => Bluebird$Promise<T>;
+  static method<T, R: $Promisable<T>>(fn: (...args: any) => R): (...args: any) => Bluebird$Promise<T>;
+
+  static cast<T>(value: $Promisable<T>): Bluebird$Promise<T>;
   static bind(ctx: any): Bluebird$Promise<void>;
   static is(value: any): boolean;
   static longStackTraces(): void;
@@ -103,13 +126,13 @@ declare class Bluebird$Promise<R> {
   static fromCallback<T>(resolver: (fn: (error: ?Error, value?: T) => any) => any, options?: Bluebird$MultiArgsOption): Bluebird$Promise<T>;
 
   constructor(callback: (
-    resolve: (result?: Bluebird$Promise<R> | R) => void,
+    resolve: (result?: $Promisable<R>) => void,
     reject: (error?: any) => void
   ) => mixed): void;
-  then<U>(onFulfill?: (value: R) => Bluebird$Promise<U> | U, onReject?: (error: any) => Bluebird$Promise<U> | U): Bluebird$Promise<U>;
-  catch<U>(onReject?: (error: any) => ?Bluebird$Promise<U> | U): Bluebird$Promise<U>;
-  caught<U>(onReject?: (error: any) => ?Bluebird$Promise<U> | U): Bluebird$Promise<U>;
-  error<U>(onReject?: (error: any) => ?Bluebird$Promise<U> | U): Bluebird$Promise<U>;
+  then<U>(onFulfill?: (value: R) => $Promisable<U>, onReject?: (error: any) => $Promisable<U>): Bluebird$Promise<U>;
+  catch<U>(onReject?: (error: any) => ?$Promisable<U>): Bluebird$Promise<U>;
+  caught<U>(onReject?: (error: any) => ?$Promisable<U>): Bluebird$Promise<U>;
+  error<U>(onReject?: (error: any) => ?$Promisable<U>): Bluebird$Promise<U>;
   done<U>(onFulfill?: (value: R) => mixed, onReject?: (error: any) => mixed): void;
   finally<T>(onDone?: (value: R) => mixed): Bluebird$Promise<T>;
   lastly<T>(onDone?: (value: R) => mixed): Bluebird$Promise<T>;
@@ -126,16 +149,18 @@ declare class Bluebird$Promise<R> {
   any<T>(): Bluebird$Promise<T>;
   some<T>(count: number): Bluebird$Promise<Array<T>>;
   race<T>(): Bluebird$Promise<T>;
-  map<T, U>(mapper: (item: T, index: number, arrayLength: number) => Bluebird$Promise<U> | U, options?: Bluebird$ConcurrencyOption): Bluebird$Promise<Array<U>>;
-  mapSeries<T, U>(mapper: (item: T, index: number, arrayLength: number) => Bluebird$Promise<U> | U): Bluebird$Promise<Array<U>>;
+  map<T, U>(mapper: (item: T, index: number, arrayLength: number) => $Promisable<U>, options?: Bluebird$ConcurrencyOption): Bluebird$Promise<Array<U>>;
+  mapSeries<T, U>(mapper: (item: T, index: number, arrayLength: number) => $Promisable<U>): Bluebird$Promise<Array<U>>;
   reduce<T, U>(
-    reducer: (total: T, item: U, index: number, arrayLength: number) => Bluebird$Promise<T> | T,
-    initialValue?: T
+    reducer: (total: T, item: U, index: number, arrayLength: number) => $Promisable<T>,
+    initialValue?: $Promisable<T>
   ): Bluebird$Promise<T>;
-  filter<T>(filterer: (item: T, index: number, arrayLength: number) => Bluebird$Promise<bool> | bool, options?: Bluebird$ConcurrencyOption): Bluebird$Promise<Array<T>>;
-  each<T, U>(iterator: (item: T, index: number, arrayLength: number) => Bluebird$Promise<U> | U): Bluebird$Promise<Array<T>>;
+  filter<T>(filterer: (item: T, index: number, arrayLength: number) => $Promisable<bool>, options?: Bluebird$ConcurrencyOption): Bluebird$Promise<Array<T>>;
+  each<T, U>(iterator: (item: T, index: number, arrayLength: number) => $Promisable<U>): Bluebird$Promise<Array<T>>;
   asCallback<T>(callback: (error: ?any, value?: T) => any, options?: Bluebird$SpreadOption): void;
   return<T>(value: T): Bluebird$Promise<T>;
+  thenReturn<T>(value: T): Bluebird$Promise<T>;
+  spread<T>(...args: Array<T>): Bluebird$Promise<*>;
 
   reflect(): Bluebird$Promise<Bluebird$PromiseInspection<*>>;
 
