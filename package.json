@@ -6,7 +6,9 @@
     "lint": "eslint src/ test/ tools/",
     "start:nodemon": "nodemon src/index.js --quiet --exec babel-node --ext js,json --ignore test.js",
     "start": "yarn start:nodemon | pino -l",
-    "test": "jest"
+    "test:setup": "yarn babel-node ./scripts/test-setup.js",
+    "test:teardown": "yarn babel-node ./scripts/test-teardown.js",
+    "test": "yarn test:setup && eslint src && jest && yarn test:teardown"
   },
   "main": "src/index.js",
   "repository": {

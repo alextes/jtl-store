@@ -1,5 +1,6 @@
 import envalid from 'envalid';
 import execa from 'execa';
+import pino from 'pino';
 import configs from '../knexfile';
 
 type Env = {
@@ -8,7 +9,8 @@ type Env = {
   DB_USER: string,
 };
 
-const { str }    = envalid;
+const log = pino();
+const { str } = envalid;
 const env: Env = envalid.cleanEnv(process.env, {
   DB_HOST: str({ default: '127.0.0.1' }),
   DB_PASS: str({ default: '' }),
@@ -18,7 +20,7 @@ const cmd = env.DB_PASS === '' ? 'dropdb' : `PGPASS=${env.DB_PASS} dropdb`;
 execa(cmd, [
   `--username=${env.DB_USER}`,
   `--host=${env.DB_HOST}`,
-  `${configs.test.connection.database}`
+  `${configs.test.connection.database}`,
 ])
-  .then(console.log)
+  .then(() => { console.log('dropped test db'); })
   .catch(console.error);

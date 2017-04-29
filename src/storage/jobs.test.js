@@ -11,7 +11,10 @@ const jobProps = {
   updatedAt:   1493410019,
 };
 
-afterAll(() => knex('jobs').del().where('source', jobProps.source));
+afterAll(() => (
+  knex('jobs').del().where('source', jobProps.source)
+    .then(knex.destroy)
+));
 
 test('should create a job', async () => {
   const id: number        = await store(jobProps);

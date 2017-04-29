@@ -20,9 +20,9 @@ const cmd = env.DB_PASS === '' ? 'createdb' : `PGPASS=${env.DB_PASS} createdb`;
 execa(cmd, [
   `--username=${env.DB_USER}`,
   `--host=${env.DB_HOST}`,
-  `${configs.test.connection.database}`
+  `${configs.test.connection.database}`,
 ])
-  .then(console.log)
+  .then(() => { console.log('finished creating db'); })
   .then(() => knex.migrate.latest())
-  .then(knex.destroy)
-  .catch(console.error);
+  .then(() => { knex.destroy(); })
+  .catch((err) => { console.error(err); knex.destroy(); process.exit(1); })
