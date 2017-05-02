@@ -22,8 +22,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "babel-preset-env": "^1.4.0",
-    "babel-preset-stage-3": "^6.24.1",
     "bluebird": "^3.5.0",
     "envalid": "^3.0.0",
     "knex": "^0.12.9",
@@ -43,6 +41,8 @@
     "babel-eslint": "^7.2.3",
     "babel-jest": "^19.0.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-stage-3": "^6.24.1",
     "esformatter": "^0.10.0",
     "esformatter-add-trailing-commas": "^1.1.0",
     "esformatter-align": "^0.2.3",

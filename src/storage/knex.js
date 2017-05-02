@@ -1,20 +1,9 @@
-import envalid, { str } from 'envalid';
 import knexBuilder from 'knex';
+import env from '../env';
 import configs from '../../knexfile';
 
-const env = envalid.cleanEnv(process.env, {
-  ENV: str({
-    choices: ['production', 'staging', 'development'],
-    default: 'development',
-  }),
-  NODE_ENV: str({
-    choices: ['production', 'development', 'test'],
-    default: 'development',
-  }),
-});
-
 let config;
-if (env.isProduction) {
+if (env.NODE_ENV === 'production') {
   config = configs.production;
 } else if (env.NODE_ENV === 'staging') {
   config = configs.staging;
