@@ -12,8 +12,7 @@ const jobProps = {
 };
 
 afterAll(() => (
-  knex('jobs').del().where('source', jobProps.source)
-    .then(knex.destroy)
+  knex('jobs').del().where('source', jobProps.source).then(knex.destroy)
 ));
 
 test('should create a job', async () => {
