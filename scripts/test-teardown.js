@@ -1,6 +1,5 @@
 import envalid from 'envalid';
 import execa from 'execa';
-import pino from 'pino';
 import configs from '../knexfile';
 
 type Env = {
@@ -9,7 +8,6 @@ type Env = {
   DB_USER: string,
 };
 
-const log = pino();
 const { str } = envalid;
 const env: Env = envalid.cleanEnv(process.env, {
   DB_HOST: str({ default: '127.0.0.1' }),

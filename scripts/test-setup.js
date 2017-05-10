@@ -25,4 +25,4 @@ execa(cmd, [
   .then(() => { console.log('finished creating db'); })
   .then(() => knex.migrate.latest())
   .then(() => { knex.destroy(); })
-  .catch((err) => { console.error(err); knex.destroy(); process.exit(1); })
+  .catch((err) => { console.error(err); knex.destroy(); process.exit(1); });
